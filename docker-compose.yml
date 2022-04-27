@@ -3,5 +3,5 @@ services:
   webapi:
     image: michaelbui99/aws-test:latest
     ports:
-      - "8080:8080"
+      - "8080:80"
       
