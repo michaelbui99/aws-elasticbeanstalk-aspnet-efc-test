@@ -22,4 +22,12 @@
       <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="out\web.config" />
+      <_ContentIncludedByDefault Remove="out\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="out\appsettings.json" />
+      <_ContentIncludedByDefault Remove="out\WebAPI.deps.json" />
+      <_ContentIncludedByDefault Remove="out\WebAPI.runtimeconfig.json" />
+    </ItemGroup>
+
 </Project>
