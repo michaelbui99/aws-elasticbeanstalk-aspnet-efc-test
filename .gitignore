@@ -457,3 +457,4 @@ $RECYCLE.BIN/
 .env
 .ebextensions
 *.zip
+out
