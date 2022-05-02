@@ -1,14 +1,28 @@
-﻿namespace WebAPI.Persistence;
+﻿using ConfigurationManager = System.Configuration.ConfigurationManager;
+
+namespace WebAPI.Persistence;
 
 public class ConnectionStringGenerator
 {
-    public static string GetConnectionStringFromEnvironment()
+    public static string? GetConnectionStringFromEnvironment()
     {
+        var appConfig = ConfigurationManager.AppSettings;
+
+        var dbName = appConfig["RDS_DB_NAME"];
+        if (string.IsNullOrEmpty(dbName))
+        {
+            return null;
+        }
+        var username = appConfig["RDS_USERNAME"];
+        var password = appConfig["RDS_PASSWORD"];
+        var hostname = appConfig["RDS_HOSTNAME"];
+        var port = appConfig["RDS_PORT"];
+
         return
-            $"Data Source= {Environment.GetEnvironmentVariable("RDS_HOSTNAME")},{Environment.GetEnvironmentVariable("RDS_PORT")};" +
-            $"Initial Catalog= {Environment.GetEnvironmentVariable("RDS_DB_NAME")};" +
-            $"User ID={Environment.GetEnvironmentVariable("RDS_USERNAME")};" +
-            $"Password = {Environment.GetEnvironmentVariable("RDS_PASSWORD")}";
+            $"Data Source= {hostname},{port};" +
+            $"Initial Catalog= {dbName};" +
+            $"User ID={username};" +
+            $"Password = {password}";
     }
 
     public static string GetConnectionStringFromDotEnv()
